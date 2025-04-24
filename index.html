@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kalkulator Metode Numerik Non-Linear menggunakan JavaScript: Bagi Dua & Regula Falsi" />
+  <title>Metode Numerik</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gradient-to-br from-purple-50 to-blue-50 min-h-screen flex flex-col">
+  <!-- Header/Navbar -->
+  <header class="bg-purple-700 text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-lg font-semibold">🧮 Metode Numerik</h1>
+      <nav class="space-x-4">
+        <a href="#" class="hover:text-purple-300">Home</a>
+        <a href="https://github.com/im-bara" target="_blank" class="hover:text-purple-300">About Me</a>
+        <a href="#" class="hover:text-purple-300">Others</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow container max-w-3xl mx-auto py-10 px-4">
+    <div id="pilih-metode" class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-xl font-bold mb-4 text-purple-800">Pilih Metode</h2>
+      <p class="mb-4">Silakan pilih metode numerik yang ingin digunakan:</p>
+      <div class="space-x-2">
+        <button onclick="tampilkanPenjelasan('bagi_dua')" class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">🔸 Metode Bagi Dua</button>
+        <button onclick="tampilkanPenjelasan('regula_falsi')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">🔹 Metode Regula Falsi</button>
+      </div>
+    </div>
+
+    <div id="penjelasan" class="bg-white p-6 rounded-2xl shadow-md mt-8 hidden">
+      <h2 class="text-xl font-bold mb-4 text-purple-800">📘 Penjelasan Metode</h2>
+      <p id="deskripsi-metode" class="text-sm text-gray-700"></p>
+      <button onclick="lanjutInput()" class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">➡️ Lanjut ke Input</button>
+    </div>
+
+    <form id="form-input" class="bg-white p-6 rounded-2xl shadow-md mt-8 space-y-4 hidden">
+      <input type="hidden" id="metode" name="metode" />
+
+      <div>
+        <label for="fungsi" class="block font-semibold">Fungsi f(x):</label>
+        <input type="text" id="fungsi" class="w-full p-2 border rounded" placeholder="Contoh: x*x*x - x - 2" required />
+      </div>
+      <div>
+        <label for="a" class="block font-semibold">Batas a:</label>
+        <input type="number" step="any" id="a" class="w-full p-2 border rounded" required />
+      </div>
+      <div>
+        <label for="b" class="block font-semibold">Batas b:</label>
+        <input type="number" step="any" id="b" class="w-full p-2 border rounded" required />
+      </div>
+      <div>
+        <label for="toleransi" class="block font-semibold">Toleransi:</label>
+        <input type="number" step="any" id="toleransi" class="w-full p-2 border rounded" value="0.0001" required />
+      </div>
+      <div>
+        <label for="maks_iterasi" class="block font-semibold">Maksimal Iterasi:</label>
+        <input type="number" id="maks_iterasi" class="w-full p-2 border rounded" value="100" required />
+      </div>
+
+      <button type="submit" class="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700">🔍 Hitung Akar</button>
+    </form>
+
+    <div id="hasil" class="bg-white p-6 rounded-2xl shadow-md mt-8 hidden">
+      <h2 class="text-xl font-bold mb-4 text-purple-800">📊 Hasil Perhitungan</h2>
+      <p><strong>Metode:</strong> <span id="hasil-metode"></span></p>
+      <p><strong>Akar ditemukan:</strong> <span id="hasil-akar"></span></p>
+      <p><strong>Jumlah iterasi:</strong> <span id="hasil-iterasi"></span></p>
+
+      <div class="mt-4">
+        <h3 class="font-semibold">Log Iterasi:</h3>
+        <ul id="log" class="text-sm text-gray-700 list-disc pl-5"></ul>
+      </div>
+
+      <div class="mt-4">
+        <h3 class="font-semibold">Grafik Konvergensi:</h3>
+        <canvas id="chart" width="400" height="250" class="mt-2"></canvas>
+      </div>
+
+      <div class="mt-6 space-x-2">
+        <button onclick="kembaliPilihMetode()" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">🔁 Pilih Metode Lain</button>
+        <button onclick="kembaliKeMenuUtama()" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">🏠 Kembali ke Menu Awal</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-purple-100 text-center text-sm text-gray-600 py-4 border-t">
+    © 2025 M Setra Satria Imbara — Dibuat dengan ☕ & 💜 untuk tugas Metode Numerik
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
